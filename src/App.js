@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+/** @format */
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import "./App.css";
+import Search from "./components/Search";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import Fetch from "./components/Fetch";
+import Table from "./components/Table";
+import Pagination from "./components/Pagination";
+import allReducers from "./reducers/allReducers";
+import Delete from "./components/Delete";
+const App = () => {
+	const store = createStore(allReducers);
+
+	return (
+		<Provider store={store}>
+			<Fetch />
+			<Search />
+			<Table />
+			<div className='w-full flex justify-center'>
+				<Delete />
+			</div>
+			<div className='flex justify-center items-center'>
+				<Pagination />
+			</div>
+		</Provider>
+	);
+};
 
 export default App;
